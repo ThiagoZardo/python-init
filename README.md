@@ -1,10 +1,8 @@
 # python-init
 
 ## 1- Criar pasta tests
- --
 
 ## 2- Criar pasta src
-
 
 ## 3- Criar arquivos de dependencias
   - requiriments.txt ==> dependencias que serão usadas em produção.
