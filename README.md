@@ -30,8 +30,14 @@
 ## 4- Dentro de src Criar arquivo main.py
   ```
   from fastapi import FastApi
-  
+  from .db import model
+  from .db import create_db_and_tables
+    
   app - FastApi()
+  
+  @app.on_event("startup")
+  def on_startup():
+      create_db_and_tables()
   
   # para iniciar essa app no terminal digite: uvicorn src.main:app --reload
   # por padrão o endereço de acesso será localhost:8000
@@ -61,8 +67,16 @@ sqlite_url = f"sqlite:///{sqlite_file_name}"
 connect_args = {"chec_same_thred": False}
 create_engine(sqlite_url, echo=True, connect_args=connect_args)
 
-SQLModel.metadata.create_all(engine)
+def create_db_and_tables():
+    SQLModel.metadata.create_all(engine)
 ```
+
+### Após isso, rodar o servidor novamente e será criado o arquivo database.sqlite
+```
+uvicorn src.main:app --reload
+```
+
+
 
 
 
